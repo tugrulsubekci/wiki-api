@@ -67,6 +67,17 @@ app.route("/articles/:articleTitle")
                 console.log("updated successfully");
             }
         })
+    })
+
+    .patch(async function(req, res) {
+        await Article.updateOne(
+            {title: req.params.articleTitle},
+            {$set: req.body}
+        );
+    })
+
+    .delete(async function(req, res) {
+        await Article.deleteOne({title: req.params.articleTitle});
     });
 
 
